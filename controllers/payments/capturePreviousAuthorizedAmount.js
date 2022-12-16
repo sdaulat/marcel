@@ -4,7 +4,6 @@ var ApiContracts = require("authorizenet").APIContracts;
 var ApiControllers = require("authorizenet").APIControllers;
 var SDKConstants = require("authorizenet").Constants;
 //var utils = require("../utils.js");
-var constants = require("../../constants.js");
 
 exports.capturePreviouslyAuthorizedAmount = (req, res) => {
   var merchantAuthenticationType =

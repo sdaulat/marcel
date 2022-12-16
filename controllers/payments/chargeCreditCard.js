@@ -4,7 +4,6 @@ var ApiContracts = require("authorizenet").APIContracts;
 var ApiControllers = require("authorizenet").APIControllers;
 var SDKConstants = require("authorizenet").Constants;
 //var utils = require("../utils.js");
-var constants = require("../../constants.js");
 
 exports.chargeCreditCard = (req, res) => {
   var calculateAmount = () => {
@@ -30,7 +29,7 @@ exports.chargeCreditCard = (req, res) => {
 
   var paymentType = new ApiContracts.PaymentType();
   paymentType.setCreditCard(creditCard);
-
+  /*
   var orderDetails = new ApiContracts.OrderType();
   orderDetails.setInvoiceNumber(req.body.orderDetails.invoiceNumber); //("INV-12345");
   orderDetails.setDescription(req.body.orderDetails.description); //("Product Description");
@@ -136,22 +135,14 @@ exports.chargeCreditCard = (req, res) => {
   var userFields =
     new ApiContracts.TransactionRequestType.UserFields();
   userFields.setUserField(userFieldList);
-
+*/
   var transactionSetting1 = new ApiContracts.SettingType();
-  transactionSetting1.setSettingName(
-    req.body.transactionSettings[0].settingName
-  ); //("duplicateWindow");
-  transactionSetting1.setSettingValue(
-    req.body.transactionSettings[0].settingValue
-  ); //("120");
+  transactionSetting1.setSettingName("duplicateWindow");
+  transactionSetting1.setSettingValue("120");
 
   var transactionSetting2 = new ApiContracts.SettingType();
-  transactionSetting2.setSettingName(
-    req.body.transactionSettings[1].settingName
-  ); //("recurringBilling");
-  transactionSetting2.setSettingValue(
-    req.body.transactionSettings[1].settingValue
-  ); //("false");
+  transactionSetting2.setSettingName("recurringBilling");
+  transactionSetting2.setSettingValue("false");
 
   var transactionSettingList = [];
   transactionSettingList.push(transactionSetting1);
@@ -167,14 +158,14 @@ exports.chargeCreditCard = (req, res) => {
   );
   transactionRequestType.setPayment(paymentType);
   transactionRequestType.setAmount(calculateAmount()); //utils.getRandomAmount());
-  transactionRequestType.setLineItems(lineItems);
-  transactionRequestType.setUserFields(userFields);
-  transactionRequestType.setOrder(orderDetails);
-  transactionRequestType.setTax(tax);
-  transactionRequestType.setDuty(duty);
-  transactionRequestType.setShipping(shipping);
-  transactionRequestType.setBillTo(billTo);
-  transactionRequestType.setShipTo(shipTo);
+  //transactionRequestType.setLineItems(lineItems);
+  //transactionRequestType.setUserFields(userFields);
+  //transactionRequestType.setOrder(orderDetails);
+  //transactionRequestType.setTax(tax);
+  //transactionRequestType.setDuty(duty);
+  //transactionRequestType.setShipping(shipping);
+  //transactionRequestType.setBillTo(billTo);
+  //transactionRequestType.setShipTo(shipTo);
   transactionRequestType.setTransactionSettings(transactionSettings);
 
   var createRequest = new ApiContracts.CreateTransactionRequest();
